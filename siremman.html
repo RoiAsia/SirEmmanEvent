@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Super Stylish Website</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background: #00ABB3;
+        background: linear-gradient(to top, #00ABB3 0%, #EAEAEA 64%);
+        background-size: cover;
+        background-repeat: no-repeat;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+      }
+
+      h1 {
+        color: #333;
+        font-size: 36px;
+        margin-top: 40px;
+      }
+
+      #videoElement {
+        width: 55vw;
+        margin: 20px auto;
+        display: block;
+        border: 4px solid #555;
+        border-radius: 64px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      #textInput {
+        width: 53vw ;
+        height: 7vh;
+        padding: 24px;
+        font-size: 2vw;
+        font-family: monospace;
+        border: 2px solid #555;
+        border-radius: 64px;
+        margin-bottom: 2rem;
+      }
+
+      #output {
+        margin-top: 20px;
+        font-size: 20px;
+      }
+
+      @import url("https://fonts.googleapis.com/css2?family=Russo+One&display=swap");
+
+      svg {
+        font-family: "Russo One", sans-serif;
+        width: 100%;
+        height: 100%;
+      }
+      svg text {
+        animation: stroke 6s infinite alternate;
+        stroke-width: 2;
+        stroke: #365fa0;
+        font-size: 51px;
+      }
+      @keyframes stroke {
+        0% {
+          fill: rgba(72, 138, 204, 0);
+          stroke: rgba(54, 95, 160, 1);
+          stroke-dashoffset: 25%;
+          stroke-dasharray: 0 50%;
+          stroke-width: 2;
+        }
+        70% {
+          fill: rgba(72, 138, 204, 0);
+          stroke: rgba(54, 95, 160, 1);
+        }
+        80% {
+          fill: rgba(72, 138, 204, 0);
+          stroke: rgba(54, 95, 160, 1);
+          stroke-width: 3;
+        }
+        100% {
+          fill: rgba(72, 138, 204, 1);
+          stroke: rgba(54, 95, 160, 0);
+          stroke-dashoffset: -25%;
+          stroke-dasharray: 50% 0;
+          stroke-width: 0;
+        }
+      }
+
+      .wrapper {
+        background-color: #EAEAEA;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <svg>
+        <text x="50%" y="50%" dy=".35em" text-anchor="middle">
+          OnPause and OnPaste DOM Event
+        </text>
+      </svg>
+    </div>
+
+    <input
+      type="text"
+      id="textInput"
+      onpaste="handlePaste(event)"
+      placeholder="Paste text here"
+    />
+
+    <video controls id="videoElement" onpause="handlePause()" autoplay>
+      <source
+        src="https://player.vimeo.com/external/458877755.sd.mp4?s=8fe2a0a1edf8c7968c0d5857d681edb530cfbc14&profile_id=164&oauth2_token_id=57447761"
+        type="video/mp4"
+      />
+      Your browser does not support the video tag.
+    </video>
+
+    <p id="output"></p>
+
+    <script>
+      var videoElement = document.getElementById("videoElement");
+      var textInput = document.getElementById("textInput");
+      var output = document.getElementById("output");
+
+      function handlePause() {
+        output.innerText = "Video playback paused.";
+        alert("Video paused");
+      }
+
+      function handlePaste(event) {
+        event.preventDefault(); // Prevent the default paste behavior
+        var pastedText = event.clipboardData.getData("text/plain");
+        alert("Pasted text:\n" + pastedText);
+        output.innerText = "Pasted Text: " + pastedText;
+      }
+    </script>
+  </body>
+</html>
